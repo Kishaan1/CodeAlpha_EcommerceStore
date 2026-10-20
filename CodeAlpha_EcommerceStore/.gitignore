@@ -1,0 +1,8 @@
+node_modules/
+ecommerce.db
+ecommerce.db-journal
+ecommerce.db-wal
+ecommerce.db-shm
+.env
+npm-debug.log*
+.DS_Store

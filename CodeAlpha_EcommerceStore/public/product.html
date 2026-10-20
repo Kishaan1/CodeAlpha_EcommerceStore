@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Product Details — VYBE MARKET (Good Finds. Better Prices.)</title>
+<meta name="description" content="View product specifications, live multi-store price comparisons across Amazon, Flipkart, Croma, and verified review breakdowns on VYBE MARKET." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('theme') || localStorage.getItem('ca_theme') || localStorage.getItem('smartbuy_theme') || localStorage.getItem('vybe_theme');
+      var isDark = saved ? (saved === 'dark') : false;
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (e) {}
+  })();
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+        colors: {
+          surface: '#fbfbfb',
+          canvas: '#f3f3f3',
+          dark: '#121212',
+        },
+      },
+    },
+  };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="/css/styles.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%97%88%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="min-h-screen bg-[#F7F6F2] dark:bg-[#0B0F19] dark:bg-[#12141A] text-[#17191F] dark:text-[#F8FAFC] transition-colors duration-300 font-sans antialiased flex flex-col selection:bg-[#4355F5] selection:text-white relative">
+
+<!-- ============ SLIM EDITORIAL ANNOUNCEMENT BAR ============ -->
+<div class="bg-[#17191F] text-white text-xs py-2 px-4 flex justify-between tracking-wide font-mono items-center shrink-0 border-b border-slate-800">
+  <div class="flex items-center gap-2">
+    <span class="w-2 h-2 rounded-full bg-[#4355F5] animate-ping"></span>
+    <span class="font-bold">VYBE BOT AI RADAR</span>
+    <span class="text-slate-400">•</span>
+    <span class="text-slate-300">LIVE MULTI-STORE PRICE INTELLIGENCE</span>
+  </div>
+  <div class="hidden sm:flex items-center gap-4 text-slate-300 text-[11px]">
+    <span>AMAZON • FLIPKART • CROMA</span>
+    <span class="text-[#00E5FF] font-semibold">90D PRICE HISTORY VERIFIED</span>
+  </div>
+</div>
+
+<!-- Ambient Subtle Noise Grid Pattern -->
+<div class="fixed inset-0 pointer-events-none bg-grid-pattern -z-20 opacity-20 dark:opacity-5 transition-opacity duration-300"></div>
+
+<!-- ============ TOASTS CONTAINER ============ -->
+<div id="toastContainer" class="fixed top-4 inset-x-0 sm:inset-x-auto sm:right-4 z-[100] flex flex-col items-center sm:items-end gap-2 px-4 sm:px-0 pointer-events-none"></div>
+
+<!-- ============ EDITORIAL NAVBAR ============ -->
+<header class="sticky top-0 z-40 bg-[#F7F6F2]/90 border-b border-[#E5E4DE] text-[#17191F] dark:bg-[#12141A]/90 dark:border-slate-800 dark:text-slate-100 backdrop-blur-md transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-18 flex items-center gap-3 sm:gap-6 justify-between">
+    <a href="/" class="flex items-center gap-2.5 shrink-0 group" aria-label="VYBE BOT AI RADAR home">
+      <div class="w-8 h-8 rounded-lg bg-[#4355F5] text-white flex items-center justify-center font-serif font-black text-sm transition-transform group-hover:scale-105 shadow-xs">
+        VB
+      </div>
+      <div class="flex flex-col">
+        <div class="flex items-center gap-1.5">
+          <span class="font-serif font-bold text-lg tracking-tight text-[#17191F] dark:text-white leading-none">VYBE BOT</span>
+          <span class="px-1.5 py-0.5 rounded bg-[#4355F5] text-white text-[9px] font-mono tracking-wider uppercase font-bold">AI RADAR</span>
+        </div>
+        <span class="text-[9px] font-mono tracking-widest uppercase text-[#777B87] dark:text-slate-400 mt-0.5 leading-none">PRICE INTELLIGENCE CORE</span>
+      </div>
+    </a>
+
+    <!-- Minimalist Navigation Numbers -->
+    <nav class="hidden lg:flex items-center gap-6 text-xs font-medium text-[#777B87] dark:text-slate-400">
+      <a href="/#catalog" class="hover:text-[#4355F5] dark:hover:text-white transition flex items-center gap-1"><span class="font-mono text-[10px] text-[#4355F5]">01.</span> Shop</a>
+      <a href="/#radar" class="hover:text-[#4355F5] dark:hover:text-white transition flex items-center gap-1"><span class="font-mono text-[10px] text-[#4355F5]">02.</span> Radar Trends</a>
+      <a href="/#drops" class="hover:text-[#4355F5] dark:hover:text-white transition flex items-center gap-1"><span class="font-mono text-[10px] text-[#4355F5]">03.</span> Price Drops</a>
+      <a href="/#intelligence" class="hover:text-[#4355F5] dark:hover:text-white transition flex items-center gap-1"><span class="font-mono text-[10px] text-[#4355F5]">04.</span> Intelligence</a>
+    </nav>
+
+    <!-- Global Search Input in Navbar -->
+    <div class="flex-1 relative max-w-md mx-2 sm:mx-4" id="searchContainer">
+      <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#777B87] pointer-events-none z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1 0 5.4 5.4a7.5 7.5 0 0 0 11.25 11.25Z" />
+      </svg>
+      <input id="searchInput" type="text" autocomplete="off" placeholder="Search products, brands, models..."
+        class="w-full rounded-full border bg-slate-50/50 hover:bg-white focus:bg-white border-slate-200 text-[#17191F] placeholder-[#777B87] dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4355F5]/20 focus:border-[#4355F5] py-2 pl-10 pr-9 text-sm transition shadow-2xs" />
+      <button id="clearSearchBtn" type="button" aria-label="Clear search"
+        class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-[#777B87] hover:text-[#17191F] dark:hover:text-white p-1 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Search Suggestions Popover -->
+      <div id="searchSuggestionsPopover" class="hidden absolute left-0 sm:right-0 sm:left-auto top-full mt-2 w-[480px] min-w-[440px] max-w-[95vw] sm:max-w-[90vw] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl shadow-2xl p-4 z-50 animate-fade-in transition-all duration-200">
+        <div class="px-2 py-1.5 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-400 border-b border-slate-100 dark:border-slate-800 mb-2">
+          <span class="flex items-center gap-1.5"><span class="text-[#4355F5]">⚡</span> <span>Predictive Results</span></span>
+          <span id="searchMatchesCount" class="text-[#4355F5] font-mono">Top matches</span>
+        </div>
+        <div id="searchSuggestionsList" class="divide-y divide-slate-100 dark:divide-slate-800/80 max-h-80 overflow-y-auto"></div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-2 sm:gap-3 shrink-0 ml-auto">
+      <a href="/" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#777B87] hover:text-[#17191F] dark:text-slate-300 dark:hover:text-white rounded-xl border border-[#E5E4DE] dark:border-slate-700 hover:bg-[#E8E6FF]/30 dark:hover:bg-slate-800 transition">
+        <span>←</span> <span>All Products</span>
+      </a>
+
+      <!-- Theme Toggle Button -->
+      <button id="themeToggleBtn" type="button" aria-label="Toggle light/dark mode" class="p-2.5 rounded-xl hover:bg-[#E8E6FF]/30 border border-[#E5E4DE] dark:hover:bg-slate-800 dark:border-slate-700 text-[#777B87] dark:text-slate-300 transition cursor-pointer" title="Toggle Light / Dark mode">
+        <svg id="themeSunIcon" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+        </svg>
+        <svg id="themeMoonIcon" class="w-4 h-4 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+        </svg>
+      </button>
+
+      <!-- Cart Button with Count Badge -->
+      <button id="cart-btn" aria-label="Open cart" class="relative px-3.5 py-2 rounded-xl bg-[#17191F] hover:bg-[#4355F5] text-white dark:bg-white dark:text-[#17191F] dark:hover:bg-[#E8E6FF] transition cursor-pointer flex items-center gap-2 shadow-2xs" title="Shopping Bag">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25c-.669 0-1.189-.578-1.119-1.243l1.263-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+        </svg>
+        <span class="text-xs font-bold hidden sm:inline">Bag</span>
+        <span id="cartCount" class="hidden bg-[#4355F5] text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] px-1 items-center justify-center">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MAIN CONTENT ============ -->
+<main class="max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8 space-y-8 sm:space-y-12 flex-1">
+
+  <!-- Breadcrumbs -->
+  <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+    <a href="/" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium flex items-center gap-1">
+      <span>🏠</span> Home
+    </a>
+    <span class="text-slate-400 dark:text-slate-600">/</span>
+    <a href="/" id="breadcrumbCategory" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium">Category</a>
+    <span class="text-slate-400 dark:text-slate-600">/</span>
+    <span id="breadcrumbTitle" class="text-slate-800 dark:text-slate-200 font-semibold truncate max-w-xs sm:max-w-md">Product Loading…</span>
+  </nav>
+
+  <!-- ============ UPPER HERO: SPLIT TWO-COLUMN PRODUCT SHOWCASE ============ -->
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+    
+    <!-- LEFT HALF (Image & Variant Gallery) -->
+    <div class="lg:col-span-6 space-y-4">
+      <div class="bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 backdrop-blur-md shadow-xl relative overflow-hidden flex flex-col items-center justify-center transition-all duration-300">
+        <!-- Variant Badge Pill -->
+        <span id="pdVariantBadge" class="absolute top-5 left-5 bg-slate-900/80 dark:bg-slate-800/90 text-white dark:text-slate-200 text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur border border-white/10 shadow-sm">
+          Triple Black
+        </span>
+
+        <!-- Deal Verdict Floating Pill -->
+        <div id="pdVerdictFloatingBadge" class="absolute top-5 right-5">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 shadow-sm animate-pulse">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Verified Low
+          </span>
+        </div>
+
+        <!-- Main Product Image -->
+        <div id="pdMainImageContainer" class="w-full aspect-square max-h-[440px] flex items-center justify-center p-4 relative group cursor-zoom-in overflow-hidden">
+          <img id="pdMainImage" src="" alt="Product Image" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-125 select-none" onerror="this.onerror=null; this.src='/assets/products/placeholder.svg';" />
+          <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none flex items-center gap-1">
+            <span>🔍</span> Hover Zoom Active
+          </div>
+        </div>
+
+        <!-- Multi-Angle Gallery Thumbnails -->
+        <div id="pdGalleryThumbnails" class="w-full flex items-center justify-center gap-2.5 pt-2 pb-1">
+          <!-- Populated dynamically by product.js with 4 angle thumbnails -->
+        </div>
+
+        <!-- Multi-store Guarantee Strip -->
+        <div class="w-full mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+          <span class="flex items-center gap-1.5">
+            <span class="text-emerald-500">✓</span> 100% Genuine Sealed
+          </span>
+          <span class="flex items-center gap-1.5">
+            <span class="text-indigo-500">⚡</span> Multi-Store Demo Catalog • Verified Schema
+          </span>
+          <span class="flex items-center gap-1.5">
+            <span class="text-amber-500">🛡️</span> 1-Year Brand Warranty
+          </span>
+        </div>
+      </div>
+
+      <!-- Color Swatch Variant Selector Card -->
+      <div class="bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 backdrop-blur-md shadow-sm">
+        <div class="flex items-center justify-between text-xs mb-3">
+          <span class="text-slate-700 dark:text-slate-200 font-medium">Select Color: <strong id="pdVariantLabel" class="text-slate-900 dark:text-white font-bold">Triple Black</strong></span>
+          <span class="text-[11px] text-slate-400">5 Finishes Available</span>
+        </div>
+        <div class="flex items-center gap-2.5 flex-wrap" id="pdVariantSwatches">
+          <!-- Populated by product.js -->
+        </div>
+      </div>
+
+      <!-- Configuration / Size / Storage Tier Selector Card -->
+      <div class="bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 backdrop-blur-md shadow-sm">
+        <div class="flex items-center justify-between text-xs mb-3">
+          <span class="text-slate-700 dark:text-slate-200 font-medium">Configuration / Tier: <strong id="pdConfigLabel" class="text-slate-900 dark:text-white font-bold">Standard Edition</strong></span>
+          <span class="text-[11px] text-slate-400">Official Specs</span>
+        </div>
+        <div class="flex items-center gap-2.5 flex-wrap" id="pdConfigChips">
+          <button type="button" class="pd-config-chip px-3.5 py-1.5 rounded-xl border text-xs font-semibold bg-indigo-600 text-white border-indigo-500 shadow-xs cursor-pointer" data-config="Standard Edition" data-delta="0">Standard Edition</button>
+          <button type="button" class="pd-config-chip px-3.5 py-1.5 rounded-xl border text-xs font-semibold bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400 transition cursor-pointer" data-config="Pro Bundle (+₹1,200)" data-delta="1200">Pro Bundle (+₹1,200)</button>
+          <button type="button" class="pd-config-chip px-3.5 py-1.5 rounded-xl border text-xs font-semibold bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-400 transition cursor-pointer" data-config="Max Edition (+₹2,500)" data-delta="2500">Max Edition (+₹2,500)</button>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons: Price Alert & Share Deal -->
+      <div class="flex items-center gap-3">
+        <button type="button" id="pdPriceAlertBtn" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-semibold text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700/80 border border-slate-200 dark:border-slate-700 rounded-2xl transition shadow-xs cursor-pointer">
+          <span>🔔</span> <span>Set Price Drop Alert</span>
+        </button>
+        <button type="button" id="pdShareDealBtn" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 text-xs font-semibold text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700/80 border border-slate-200 dark:border-slate-700 rounded-2xl transition shadow-xs cursor-pointer" title="Copy shareable deal dossier to clipboard">
+          <span>📋</span> <span>Share Deal Dossier</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT HALF (Title, Ratings, Price, Stores Matrix, Purchase Controls) -->
+    <div class="lg:col-span-6 space-y-6">
+      
+      <!-- Category, Badge & Title -->
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span id="pdCategoryBadge" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest bg-indigo-50 dark:bg-indigo-950/60 px-3 py-1 rounded-full border border-indigo-200 dark:border-indigo-800">
+            ELECTRONICS
+          </span>
+          <span id="pdStockPill" class="text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> In Stock
+          </span>
+        </div>
+
+        <h1 id="pdTitle" class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+          Product Name
+        </h1>
+
+        <!-- Rating & Reviews Bar -->
+        <div class="flex items-center gap-3 mt-3 text-sm">
+          <div class="flex items-center gap-1 font-bold text-slate-900 dark:text-white bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20">
+            <span class="text-amber-500">★</span>
+            <span id="pdRatingScore">4.8</span>
+          </div>
+          <span class="text-slate-400 dark:text-slate-500">&middot;</span>
+          <a href="#customerReviewsSection" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">
+            <span id="pdReviewsCount">24</span> Customer Reviews
+          </a>
+          <span class="text-slate-400 dark:text-slate-500">&middot;</span>
+          <span class="text-xs text-slate-500 dark:text-slate-400">94% Verified Organic</span>
+        </div>
+      </div>
+
+      <!-- Price & Deal Verdict Pill -->
+      <div class="p-5 sm:p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 backdrop-blur-md shadow-xl space-y-3">
+        <div class="flex items-baseline gap-3 flex-wrap">
+          <span id="pdPrice" class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">₹0.00</span>
+          <span id="pdOriginalPrice" class="text-base text-slate-400 line-through">₹0.00</span>
+          <span id="pdDiscountPercent" class="text-xs font-extrabold px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700">18% OFF</span>
+        </div>
+
+        <!-- Deal Verdict Banner -->
+        <div id="pdVerdictBanner" class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span class="text-base">💡</span>
+            <span id="pdVerdictText" class="font-medium">Checking 90-day price trends across retailers…</span>
+          </div>
+          <span id="pdVerdictTag" class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-500 text-white shrink-0">Best Time to Buy</span>
+        </div>
+
+        <p id="pdDescription" class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pt-1">
+          Product description loading…
+        </p>
+      </div>
+
+      <!-- ============ COMPARE ACROSS STORES MATRIX ============ -->
+      <div class="p-5 sm:p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 backdrop-blur-md shadow-xl space-y-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-base">🏷️</span>
+            <h2 class="font-bold text-sm uppercase tracking-wider text-slate-900 dark:text-white">Compare Across Stores</h2>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button type="button" id="pdLiveSyncBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold text-xs shadow-xs transition hover:scale-105 active:scale-95 cursor-pointer">
+              <span id="pdSyncIcon">⚡</span> <span>Check Live Prices</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Sync Progress Simulation Overlay -->
+        <div id="pdLiveSyncOverlay" class="hidden p-4 rounded-2xl bg-slate-950 text-white border border-slate-800 space-y-2 animate-fade-in">
+          <div class="flex items-center justify-between text-xs font-bold text-amber-400">
+            <span class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              Querying Live Retailer Catalogs…
+            </span>
+            <span id="pdSyncPercent" class="font-mono text-slate-300">0%</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+            <div id="pdSyncProgressBar" class="h-full bg-gradient-to-r from-amber-400 to-emerald-400 rounded-full transition-all duration-300" style="width: 20%"></div>
+          </div>
+          <div class="space-y-1 font-mono text-[11px] text-slate-400 pt-1">
+            <div class="flex justify-between"><span>Amazon.in listing:</span><span id="pdSyncStep1" class="text-slate-500">Pending</span></div>
+            <div class="flex justify-between"><span>Flipkart catalog:</span><span id="pdSyncStep2" class="text-slate-500">Pending</span></div>
+            <div class="flex justify-between"><span>Croma Electronics:</span><span id="pdSyncStep3" class="text-slate-500">Pending</span></div>
+          </div>
+        </div>
+
+        <!-- Best Deal Callout -->
+        <div id="pdBestDealCallout" class="p-3 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-xs text-amber-950 dark:text-amber-200 flex items-center gap-2.5">
+          <span class="text-lg">💡</span>
+          <span id="pdBestDealText" class="font-semibold">Comparing live prices across stores…</span>
+        </div>
+
+        <!-- Stores Table / List -->
+        <div id="pdStoresList" class="space-y-3">
+          <!-- Populated by product.js with Amazon, Flipkart, Croma rows -->
+        </div>
+      </div>
+
+      <!-- Quantity Selector & Add to Bag / Buy Now Controls -->
+      <div class="p-5 sm:p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 backdrop-blur-md shadow-xl space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Quantity:</span>
+          <div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full p-1">
+            <button type="button" id="pdQtyMinus" class="w-8 h-8 rounded-full bg-white dark:bg-slate-700 text-slate-900 dark:text-white font-bold flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-600 transition cursor-pointer">−</button>
+            <span id="pdQtyCount" class="w-8 text-center font-bold text-sm text-slate-900 dark:text-white">1</span>
+            <button type="button" id="pdQtyPlus" class="w-8 h-8 rounded-full bg-white dark:bg-slate-700 text-slate-900 dark:text-white font-bold flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-600 transition cursor-pointer">+</button>
+          </div>
+          <span class="text-xs text-slate-400">Available: <span id="pdStockCount">In Stock</span></span>
+        </div>
+
+        <div class="flex items-center gap-3 pt-2">
+          <button type="button" id="addToBagBtn" class="flex-1 py-3.5 px-6 rounded-xl bg-[#D94F32] hover:bg-[#b83e25] text-white font-bold text-sm tracking-wide transition shadow-2xs active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
+            <span>🛍️</span> <span>Add to Bag</span>
+          </button>
+          <button type="button" id="buyNowBtn" class="flex-1 py-3.5 px-6 rounded-xl bg-[#191919] hover:bg-[#333333] text-white dark:bg-white dark:text-[#191919] font-bold text-sm tracking-wide transition shadow-2xs active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
+            <span>⚡</span> <span>Buy Now</span>
+          </button>
+        </div>
+
+        <!-- Safe Checkout Assurance -->
+        <div class="pt-2 flex items-center justify-around text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800">
+          <span>🔒 256-Bit SSL Encrypted</span>
+          <span>🚚 Free Express Shipping</span>
+          <span>↺ 30-Day Money Back</span>
+        </div>
+      </div>
+
+      <!-- Pincode Delivery Quick-Checker Card -->
+      <div class="p-5 sm:p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 backdrop-blur-md shadow-xl space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-base">🚚</span>
+            <h3 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Delivery &amp; COD Availability</h3>
+          </div>
+          <span class="text-[11px] text-slate-400 font-medium">Pan-India Dispatch</span>
+        </div>
+        <form id="pdPincodeCheckForm" class="flex gap-2">
+          <input type="text" id="pdPincodeInput" maxlength="6" pattern="[0-9]{6}" placeholder="Enter 6-digit Pincode (e.g. 560001)" class="flex-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3.5 py-2 text-xs font-mono text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500" />
+          <button type="submit" id="pdPincodeBtn" class="px-4 py-2 rounded-xl bg-slate-900 dark:bg-slate-700 hover:bg-slate-800 dark:hover:bg-slate-600 text-white text-xs font-bold transition cursor-pointer">Check</button>
+        </form>
+        <div id="pdPincodeResult" class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300 space-y-1">
+          <div class="flex items-center gap-2 font-semibold text-emerald-600 dark:text-emerald-400">
+            <span>✓</span> <span id="pdPincodeSpeedText">Delivery by Tomorrow, 2 PM • Free Express Delivery</span>
+          </div>
+          <p id="pdPincodeSubText" class="text-[11px] text-slate-500 dark:text-slate-400">Cash on Delivery &amp; Doorstep Open-Box Inspection available for 560001.</p>
+        </div>
+      </div>
+
+      <!-- Verified Store Coupons Card for this Product -->
+      <div id="pdStoreCouponsCard" class="p-5 sm:p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 backdrop-blur-md shadow-xl space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-base">🎟️</span>
+            <h3 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Active Retailer Coupons</h3>
+          </div>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Verified Today</span>
+        </div>
+        <div id="pdStoreCouponsList" class="space-y-2">
+          <!-- Populated by product.js -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ LOWER SECTION: 90-DAY PRICE HISTORY & INTELLIGENCE ============ -->
+  <section class="space-y-6 pt-4">
+    <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+      <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+        <span class="text-indigo-500">📈</span> 90-Day Market Price Intelligence &amp; Trend
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+        Historical price metrics, AI forecasting, and dynamic time-range trend analysis.
+      </p>
+    </div>
+
+    <!-- Milestone Metric Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div class="bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm space-y-1">
+        <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-medium">
+          <span>All-Time Lowest</span>
+          <span class="text-base">📉</span>
+        </div>
+        <div id="pdMilestoneLowestPrice" class="text-2xl font-black text-emerald-600 dark:text-emerald-400">₹--</div>
+        <div id="pdMilestoneLowestDate" class="text-[11px] text-slate-400">Recorded: --</div>
+      </div>
+
+      <div class="bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm space-y-1">
+        <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-medium">
+          <span>All-Time Highest</span>
+          <span class="text-base">📈</span>
+        </div>
+        <div id="pdMilestoneHighestPrice" class="text-2xl font-black text-slate-900 dark:text-white">₹--</div>
+        <div id="pdMilestoneHighestDate" class="text-[11px] text-slate-400">Recorded: --</div>
+      </div>
+
+      <div class="bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm space-y-1">
+        <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-medium">
+          <span>90-Day Average</span>
+          <span class="text-base">⚖️</span>
+        </div>
+        <div id="pdMilestoneAvgPrice" class="text-2xl font-black text-slate-800 dark:text-slate-200">₹--</div>
+        <div id="pdMilestoneAvgSavings" class="text-[11px] text-slate-400">Last 90 Days</div>
+      </div>
+    </div>
+
+    <!-- Interactive Chart.js Graph with Range Switcher -->
+    <div class="bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-xl space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h3 class="font-bold text-sm uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">
+            <span>📊</span> Price Trend History
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5">Toggle date horizons to inspect seasonal price fluctuations</p>
+        </div>
+
+        <!-- Range Switcher Pills: [7D], [30D], [90D], [180D] -->
+        <div id="pdRangeSwitcher" class="inline-flex items-center p-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-xs font-semibold self-start sm:self-auto">
+          <button type="button" class="pd-range-pill px-3 py-1.5 rounded-full text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white transition cursor-pointer" data-range="7d">7D</button>
+          <button type="button" class="pd-range-pill px-3 py-1.5 rounded-full text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white transition cursor-pointer" data-range="30d">30D</button>
+          <button type="button" class="pd-range-pill px-3 py-1.5 rounded-full active bg-white dark:bg-slate-700 text-slate-900 dark:text-white font-bold shadow-xs transition cursor-pointer" data-range="90d">90D</button>
+          <button type="button" class="pd-range-pill px-3 py-1.5 rounded-full text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white transition cursor-pointer" data-range="180d">180D</button>
+        </div>
+      </div>
+
+      <div class="relative w-full h-64 sm:h-80">
+        <canvas id="pdPriceHistoryChart"></canvas>
+      </div>
+    </div>
+
+    <!-- AI Price Prediction Forecaster Card -->
+    <div class="bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-xl space-y-3">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-2xl bg-indigo-600/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-sm font-bold">🤖</span>
+          <div>
+            <h4 class="text-slate-700 dark:text-slate-200 font-semibold text-xs tracking-wider uppercase">AI PRICE PREDICTION FORECASTER</h4>
+            <span class="text-[10px] text-slate-400">Neural Deal Prediction Model &middot; Real-time confidence score</span>
+          </div>
+        </div>
+        <span id="pdForecastConfidenceBadge" class="self-start sm:self-auto px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700">
+          92% High Confidence
+        </span>
+      </div>
+
+      <p id="pdForecastMessage" class="text-sm font-bold text-slate-900 dark:text-slate-100 leading-relaxed">
+        Analyzing recent price drops and cyclical market trends…
+      </p>
+
+      <!-- Confidence Bar -->
+      <div class="space-y-1.5 pt-1">
+        <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+          <span>Forecasting Confidence</span>
+          <span id="pdForecastConfidencePercent" class="font-mono font-bold text-slate-800 dark:text-slate-200">92%</span>
+        </div>
+        <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden">
+          <div id="pdForecastConfidenceBar" class="h-full bg-gradient-to-r from-indigo-500 to-emerald-400 rounded-full transition-all duration-700" style="width: 92%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STRUCTURED TABBED SPECIFICATIONS MATRIX ============ -->
+  <section id="specificationsMatrixSection" class="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
+      <div>
+        <h3 class="font-extrabold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+          <span>📋</span> Technical Specifications &amp; In The Box
+        </h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Verified manufacturer specifications sheet &amp; package inclusions.</p>
+      </div>
+      <!-- Tab switcher pills -->
+      <div id="specTabPills" class="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700 self-start sm:self-auto text-xs">
+        <button type="button" class="spec-tab-btn active px-3.5 py-1.5 rounded-full bg-indigo-600 text-white font-bold transition shadow-xs cursor-pointer" data-tab="tech-specs">Technical Specs</button>
+        <button type="button" class="spec-tab-btn px-3.5 py-1.5 rounded-full text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white font-medium transition cursor-pointer" data-tab="warranty-support">Warranty &amp; Service</button>
+        <button type="button" class="spec-tab-btn px-3.5 py-1.5 rounded-full text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white font-medium transition cursor-pointer" data-tab="in-the-box">In The Box</button>
+      </div>
+    </div>
+
+    <!-- Tab 1: Technical Specs Content -->
+    <div id="tabContentTechSpecs" class="space-y-3">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs" id="pdDynamicSpecsGrid">
+        <!-- Populated dynamically by product.js -->
+      </div>
+    </div>
+
+    <!-- Tab 2: Warranty & Service Content -->
+    <div id="tabContentWarranty" class="hidden space-y-3 text-xs text-slate-600 dark:text-slate-300">
+      <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-2">
+        <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider flex items-center gap-1.5">
+          <span>🛡️</span> 1-Year Comprehensive Manufacturer Warranty
+        </h4>
+        <p class="leading-relaxed">Covers internal defects, hardware failures, driver distortion, and battery faults. Claims processed through 450+ authorized service centers nationwide with complimentary doorstep courier dispatch.</p>
+        <div class="flex items-center gap-4 pt-2 text-[11px] text-slate-500 font-semibold">
+          <span>✓ Instant Claim Registration</span>
+          <span>✓ 7-Day Turnaround Time</span>
+          <span>✓ 100% Genuine Spare Parts</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: In The Box Content -->
+    <div id="tabContentInTheBox" class="hidden space-y-3 text-xs text-slate-600 dark:text-slate-300">
+      <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-2">
+        <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider flex items-center gap-1.5">
+          <span>📦</span> Verified Box Contents
+        </h4>
+        <ul class="list-disc list-inside space-y-1 text-slate-700 dark:text-slate-300 leading-relaxed">
+          <li>1x Primary Certified Hardware Device (Triple Black Edition)</li>
+          <li>1x 1.2m Braided Type-C Fast-Charging Cable (65W Certified)</li>
+          <li>1x Premium Shock-Resistant EVA Protective Hard Shell Case</li>
+          <li>1x Quick Start Guide &amp; Regulatory Safety Leaflet</li>
+          <li>1x Official Hologram Authenticated Manufacturer Warranty Card</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOWER SECTION: CUSTOMER REVIEWS & AUTHENTICITY ============ -->
+  <section id="customerReviewsSection" class="space-y-6 pt-4">
+    <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+          <span>⭐</span> Customer Reviews &amp; Sentiment Authenticity
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+          Fakespot-grade verified purchaser feedback analysis and natural language parsing.
+        </p>
+      </div>
+      <button type="button" id="pdToggleReviewFormBtn" class="self-start sm:self-auto px-4 py-2 rounded-full border border-slate-300 dark:border-slate-700 hover:border-slate-900 dark:hover:border-white bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold transition shadow-xs cursor-pointer">
+        Write a Review
+      </button>
+    </div>
+
+    <!-- Rating Breakdown Summary -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xl items-center">
+      <div class="text-center md:border-r md:border-slate-200 dark:md:border-slate-800 md:pr-6 space-y-1">
+        <div class="text-5xl font-black text-slate-900 dark:text-white tracking-tight" id="pdBigRating">4.8</div>
+        <div class="text-amber-500 text-lg">★★★★★</div>
+        <p class="text-xs text-slate-400" id="pdTotalReviewsCount">Based on 24 reviews</p>
+      </div>
+      <div class="md:col-span-2 space-y-2 text-xs" id="pdBreakdownBars"></div>
+    </div>
+
+    <!-- Review Health & Authenticity Card -->
+    <div class="p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xl space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg font-bold">
+            🛡️
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h4 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Review Health &amp; Authenticity</h4>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">AI Verified</span>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-0.5">Spam bot pattern filtration &amp; certified natural language assessment</p>
+          </div>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold self-start sm:self-auto">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span id="pdAuthenticityGradeText">Grade A (94% Verified Organic)</span>
+        </div>
+      </div>
+
+      <!-- Sentiment Bar -->
+      <div class="space-y-1.5">
+        <div class="flex items-center justify-between text-xs font-semibold text-slate-600 dark:text-slate-400">
+          <span>Sentiment Ratio</span>
+          <span id="pdSentimentRatioText" class="font-mono text-[11px]">80% Positive • 15% Neutral • 5% Critical</span>
+        </div>
+        <div class="w-full h-3 rounded-full overflow-hidden flex bg-slate-200 dark:bg-slate-800">
+          <div id="pdSentimentBarPositive" class="h-full bg-emerald-500 transition-all duration-500" style="width: 80%" title="Positive"></div>
+          <div id="pdSentimentBarNeutral" class="h-full bg-amber-400 transition-all duration-500" style="width: 15%" title="Neutral"></div>
+          <div id="pdSentimentBarCritical" class="h-full bg-rose-500 transition-all duration-500" style="width: 5%" title="Critical"></div>
+        </div>
+      </div>
+
+      <!-- Pros & Cons Grid -->
+      <div class="grid sm:grid-cols-2 gap-3 pt-2 text-xs">
+        <div class="p-3.5 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-900/50 space-y-1">
+          <div class="font-bold text-emerald-900 dark:text-emerald-300 text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+            <span>✓</span> Highlights / Key Pros
+          </div>
+          <p id="pdReviewPros" class="text-emerald-800 dark:text-emerald-400 leading-relaxed text-[11px]">
+            Outstanding battery endurance, superb soundstage fidelity, and comfortable ergonomic design.
+          </p>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-rose-50/70 dark:bg-rose-950/30 border border-rose-200/70 dark:border-rose-900/50 space-y-1">
+          <div class="font-bold text-rose-900 dark:text-rose-300 text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+            <span>✕</span> Caveats / Drawbacks
+          </div>
+          <p id="pdReviewCons" class="text-rose-800 dark:text-rose-400 leading-relaxed text-[11px]">
+            Charging cable included in box is somewhat short; companion app requires initial firmware update.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collapsible Add Review Form -->
+    <form id="pdReviewForm" class="hidden p-6 rounded-3xl bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-slate-800 shadow-xl space-y-4 animate-fade-in">
+      <h4 class="font-bold text-sm text-slate-900 dark:text-white">Share Your Verified Experience</h4>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs font-medium text-slate-700 dark:text-slate-300">Your Name</label>
+          <input required type="text" id="pdReviewAuthor" placeholder="e.g. Jordan Smith" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3.5 py-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500" />
+        </div>
+        <div>
+          <label class="text-xs font-medium text-slate-700 dark:text-slate-300">Rating</label>
+          <select id="pdReviewRating" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3.5 py-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500">
+            <option value="5">★★★★★ (5 - Excellent)</option>
+            <option value="4">★★★★☆ (4 - Very Good)</option>
+            <option value="3">★★★☆☆ (3 - Average)</option>
+            <option value="2">★★☆☆☆ (2 - Fair)</option>
+            <option value="1">★☆☆☆☆ (1 - Poor)</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="text-xs font-medium text-slate-700 dark:text-slate-300">Comments</label>
+        <textarea required id="pdReviewComment" rows="3" placeholder="What stood out to you about this product's performance?" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500"></textarea>
+      </div>
+      <div class="flex justify-end gap-2 pt-1">
+        <button type="button" id="pdCancelReviewBtn" class="text-xs px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+        <button type="submit" id="pdSubmitReviewBtn" class="text-xs font-semibold px-5 py-2 rounded-full bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white shadow-sm">Submit Review</button>
+      </div>
+    </form>
+
+    <!-- Reviews List Container -->
+    <div id="pdReviewsList" class="space-y-3">
+      <!-- Populated by product.js -->
+    </div>
+  </section>
+
+  <!-- ============ FREQUENTLY BOUGHT TOGETHER BUNDLE ============ -->
+  <section id="frequentlyBoughtSection" class="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5">
+    <div class="flex items-center gap-2.5">
+      <span class="text-xl">🎁</span>
+      <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight">Frequently Bought Together</h3>
+    </div>
+    
+    <div class="flex flex-col lg:flex-row items-center gap-6">
+      <div id="bundleItemsContainer" class="flex items-center gap-3 sm:gap-4 flex-wrap flex-1">
+        <!-- Main Product Mini Card -->
+        <div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/80 rounded-2xl border border-slate-200 dark:border-slate-700">
+          <img id="bundleMainImg" src="" alt="" class="w-16 h-16 object-contain rounded-xl bg-white dark:bg-slate-900 p-1" />
+          <div class="text-xs">
+            <span class="text-[10px] font-bold text-indigo-500 uppercase">This item:</span>
+            <p id="bundleMainTitle" class="font-bold text-slate-900 dark:text-white truncate max-w-[140px]">Product</p>
+            <span id="bundleMainPrice" class="font-bold text-slate-900 dark:text-white font-mono">₹0.00</span>
+          </div>
+        </div>
+
+        <span class="text-xl font-bold text-slate-400">+</span>
+
+        <!-- Complementary Item 1 -->
+        <div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/80 rounded-2xl border border-slate-200 dark:border-slate-700">
+          <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=300&q=80" alt="Audio Case" class="w-16 h-16 object-contain rounded-xl bg-white dark:bg-slate-900 p-1" />
+          <div class="text-xs">
+            <span class="text-[10px] font-bold text-emerald-500 uppercase">Add-on:</span>
+            <p class="font-bold text-slate-900 dark:text-white truncate max-w-[140px]">Hard EVA Carry Case</p>
+            <span class="font-bold text-slate-900 dark:text-white font-mono">₹499.00</span>
+          </div>
+        </div>
+
+        <span class="text-xl font-bold text-slate-400">+</span>
+
+        <!-- Complementary Item 2 -->
+        <div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/80 rounded-2xl border border-slate-200 dark:border-slate-700">
+          <img src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=300&q=80" alt="Fast Charger" class="w-16 h-16 object-contain rounded-xl bg-white dark:bg-slate-900 p-1" />
+          <div class="text-xs">
+            <span class="text-[10px] font-bold text-emerald-500 uppercase">Add-on:</span>
+            <p class="font-bold text-slate-900 dark:text-white truncate max-w-[140px]">65W Fast GaN Charger</p>
+            <span class="font-bold text-slate-900 dark:text-white font-mono">₹899.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bundle Total and Single Add to Cart Action -->
+      <div class="p-4 bg-slate-100 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 text-center sm:text-left space-y-2 shrink-0 w-full lg:w-64">
+        <div class="text-xs text-slate-500 dark:text-slate-400">Total Price for all 3:</div>
+        <div id="bundleTotalPrice" class="text-2xl font-black text-slate-900 dark:text-white">₹0.00</div>
+        <div class="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold">Bundle Savings: Save ₹350</div>
+        <button type="button" id="bundleAddAllBtn" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer">
+          Add All 3 to Cart
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHEAPER & LOOK-ALIKE ALTERNATIVES ============ -->
+  <section id="cheaperAlternativesSection" class="space-y-6 pt-4">
+    <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex items-center justify-between">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-600 text-white shadow-2xs">Smart Savings</span>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">Cheaper &amp; Look-Alike Alternatives</h2>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+          High-performance alternatives in this category that cost significantly less.
+        </p>
+      </div>
+      <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400">Algorithmic Match</span>
+    </div>
+
+    <!-- Alternatives Grid -->
+    <div id="cheaperAlternativesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Dynamically populated by product.js -->
+    </div>
+  </section>
+
+  <!-- ============ LOWER SECTION: RELATED PRODUCTS RECOMMENDATION GRID ============ -->
+  <section class="space-y-6 pt-4 pb-8">
+    <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex items-center justify-between">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+          <span>✨</span> Related Products You May Like
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+          Top deals and customer-favorites curated from the same collection.
+        </p>
+      </div>
+      <a href="/" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline hidden sm:inline">
+        View All Products →
+      </a>
+    </div>
+
+    <!-- Related Products Grid -->
+    <div id="relatedProductsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Dynamically populated by product.js with direct links to product.html?id=X -->
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-950 py-10 text-center text-xs text-slate-500 dark:text-slate-400 mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <span class="w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] font-bold">CA</span>
+      <span class="font-semibold text-slate-700 dark:text-slate-200">CodeAlpha Store</span>
+      <span class="text-slate-400 dark:text-slate-600">&middot;</span>
+      <span>Dedicated Product Details</span>
+    </div>
+    <p class="text-slate-500">&copy; <span id="year">2026</span> CodeAlpha_EcommerceStore &middot; Zero external dependencies.</p>
+  </div>
+</footer>
+
+<!-- ============ CART DRAWER ============ -->
+<div id="cart-backdrop" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[90] transition-opacity"></div>
+<aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white dark:bg-slate-900 z-[100] translate-x-full transition-transform duration-300 ease-out flex flex-col shadow-2xl border-l border-neutral-200 dark:border-slate-800">
+  <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-100 dark:border-slate-800">
+    <div>
+      <h3 class="font-bold text-base tracking-tight text-neutral-900 dark:text-white">Your Cart</h3>
+      <p class="text-xs text-neutral-400">Review your selected items</p>
+    </div>
+    <button id="close-cart-btn" data-legacy-id="closeCartBtn" aria-label="Close cart" class="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-slate-800 transition text-neutral-500 hover:text-black dark:hover:text-white cursor-pointer">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+    </button>
+  </div>
+
+  <div id="cartItems" class="flex-1 overflow-y-auto px-6 py-4 space-y-4"></div>
+
+  <div id="cartEmptyState" class="hidden flex-1 flex-col items-center justify-center text-center px-6">
+    <div class="w-14 h-14 rounded-full bg-neutral-100 dark:bg-slate-800 flex items-center justify-center text-neutral-400 mb-3 text-xl">🛒</div>
+    <h4 class="font-semibold text-neutral-900 dark:text-white text-sm">Your cart is empty</h4>
+    <p class="text-xs text-neutral-400 mt-1 max-w-xs">Explore the collection and select your preferred items to begin checkout.</p>
+  </div>
+
+  <div id="cartFooter" class="border-t border-neutral-200 dark:border-slate-800 px-6 py-5 space-y-2.5 bg-neutral-50/60 dark:bg-slate-900/60">
+    <!-- Buyhatke Smart Split Summary Banner -->
+    <div id="cartSmartSplitBanner" class="hidden p-3.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 text-xs text-emerald-950 dark:text-emerald-200 mb-2 space-y-1.5 animate-fade-in shadow-xs">
+      <div class="flex items-center justify-between font-bold text-emerald-900 dark:text-emerald-300">
+        <span class="flex items-center gap-1.5">
+          <span class="text-base">💡</span>
+          <span id="cartSmartSplitTitle">Smart Split: Buy across Amazon &amp; Flipkart</span>
+        </span>
+        <span id="cartSmartSplitSavings" class="text-xs bg-emerald-200 dark:bg-emerald-800 text-emerald-950 dark:text-emerald-100 px-2.5 py-0.5 rounded-full font-extrabold shadow-2xs">Save +₹0.00</span>
+      </div>
+      <p id="cartSmartSplitText" class="text-xs text-emerald-800 dark:text-emerald-400 leading-relaxed font-normal">
+        Buy items individually from each retailer's lowest offer instead of a single store.
+      </p>
+      <div id="cartSmartSplitAllocation" class="space-y-1 pt-1.5 border-t border-emerald-200/70 dark:border-emerald-800/70 text-[11px] text-emerald-900 dark:text-emerald-200 font-medium"></div>
+    </div>
+
+    <!-- Promo / Coupon Code Section -->
+    <div class="bg-white dark:bg-slate-800/80 border border-neutral-200 dark:border-slate-700 rounded-xl p-2.5 mb-1 space-y-2">
+      <form id="couponForm" class="flex gap-2">
+        <input type="text" id="couponInput" placeholder="Promo code (e.g. BUYHATKE20)" class="flex-1 bg-neutral-50 dark:bg-slate-900 border border-neutral-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs uppercase tracking-wider focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white transition font-mono placeholder:normal-case placeholder:font-sans placeholder:text-neutral-400 dark:text-white" />
+        <button type="submit" id="applyCouponBtn" class="bg-black dark:bg-white hover:bg-neutral-800 dark:hover:bg-neutral-200 text-white dark:text-black text-xs font-semibold px-3 py-1.5 rounded-lg transition shadow-sm shrink-0 cursor-pointer">Apply</button>
+      </form>
+    </div>
+
+    <div class="flex justify-between text-xs text-neutral-500 dark:text-slate-400"><span>Subtotal</span><span id="cartSubtotal" class="font-medium text-neutral-800 dark:text-slate-200">₹0.00</span></div>
+    <div id="cartDiscountRow" class="hidden justify-between text-xs text-emerald-600 dark:text-emerald-400 font-medium"><span>Discount (<span id="cartDiscountLabel">BUYHATKE20</span>)</span><span id="cartDiscount">-₹0.00</span></div>
+    <div class="flex justify-between text-xs text-neutral-500 dark:text-slate-400"><span>Estimated tax (8%)</span><span id="cartTax" class="font-medium text-neutral-800 dark:text-slate-200">₹0.00</span></div>
+    <div class="flex justify-between text-xs text-neutral-500 dark:text-slate-400"><span>Shipping</span><span id="cartShipping" class="font-medium text-neutral-800 dark:text-slate-200">₹0.00</span></div>
+    <div class="flex justify-between text-base font-bold text-neutral-900 dark:text-white pt-3 border-t border-neutral-200 dark:border-slate-800"><span>Total</span><span id="cartTotal">₹0.00</span></div>
+    <button id="checkoutBtn" class="w-full mt-3 bg-black dark:bg-white hover:bg-neutral-800 dark:hover:bg-neutral-200 text-white dark:text-black font-semibold rounded-full py-3.5 transition shadow-sm text-sm cursor-pointer">Proceed to Checkout</button>
+  </div>
+</aside>
+
+<!-- ============ PRICE ALERT POPUP MODAL ============ -->
+<div id="priceAlertModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="modal-backdrop absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+  <div class="relative bg-slate-900 text-slate-100 border border-slate-800 rounded-3xl p-6 sm:p-7 max-w-md w-full shadow-2xl space-y-4 animate-slide-up">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-xl">🔔</span>
+        <h3 class="font-bold text-base text-white">Set Price Drop Alert</h3>
+      </div>
+      <button type="button" id="closePriceAlertModalBtn" class="p-1.5 rounded-full hover:bg-slate-800 text-slate-400 hover:text-white transition cursor-pointer">✕</button>
+    </div>
+    <p class="text-xs text-slate-400">
+      We'll monitor Amazon, Flipkart &amp; Croma and notify you the moment the price falls below your target.
+    </p>
+    <form id="priceAlertForm" class="space-y-3.5">
+      <div>
+        <label class="text-xs font-semibold text-slate-300">Target Price (₹)</label>
+        <input required type="number" step="0.01" id="alertTargetPriceInput" class="mt-1 w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-indigo-500 font-mono" />
+      </div>
+      <div>
+        <label class="text-xs font-semibold text-slate-300">Notification Email</label>
+        <input required type="email" id="alertEmailInput" placeholder="you@example.com" class="mt-1 w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-indigo-500" />
+      </div>
+      <button type="submit" class="w-full py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs uppercase tracking-wider transition shadow-sm cursor-pointer">
+        Save Price Alert
+      </button>
+    </form>
+  </div>
+</div>
+
+<script type="module" src="/js/product.js"></script>
+</body>
+</html>
