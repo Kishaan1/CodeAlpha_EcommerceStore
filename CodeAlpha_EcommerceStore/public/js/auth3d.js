@@ -356,6 +356,7 @@ function renderVisorDisplay(state) {
  */
 export function setMascotState(state) {
   currentMascotState = state;
+  window.currentMascotState = state;
   const bubbleTop = document.getElementById('mascotSpeechText') || document.getElementById('mascot-top-bubble');
   const bubbleBottom = document.getElementById('mascotLowerStatusText') || document.getElementById('mascot-bottom-bubble');
   const statusIndicator = document.getElementById('mascotStatusText');
@@ -376,7 +377,7 @@ export function setMascotState(state) {
 
       targetRotations.head          = { x: 0.1, y: 0,    z: 0 };
 
-      if (bubbleTop) bubbleTop.textContent = "Shhh... Your password is private! 🙈";
+      if (bubbleTop) bubbleTop.textContent = "Shhh... Your password is private! \u{1F648}";
       if (bubbleBottom) bubbleBottom.textContent = "Biometric Vault Active • 256-Bit SSL Protection";
       if (statusIndicator) statusIndicator.textContent = "SHHH... ENCRYPTED!";
       break;
@@ -393,7 +394,7 @@ export function setMascotState(state) {
 
       targetRotations.head          = { x: -0.15, y: 1.25, z: 0.2 };
 
-      if (bubbleTop) bubbleTop.textContent = "Whoa! Don't show your password in public! 🫣";
+      if (bubbleTop) bubbleTop.textContent = "Whoa! Don't show your password in public! \u{1FAE3}";
       if (statusIndicator) statusIndicator.textContent = "NO LOOKING!";
       break;
 
@@ -424,7 +425,7 @@ export function setMascotState(state) {
 
       targetRotations.head          = { x: 0, y: 0, z: 0 };
 
-      if (bubbleTop) bubbleTop.textContent = "Hi! I'm Vybe Bot 🐾 Ready to discover better prices?";
+      if (bubbleTop) bubbleTop.textContent = "Hi! I'm Vybe Bot \u{1F43E} Ready to discover better prices?";
       if (bubbleBottom) bubbleBottom.textContent = "Checking our live database for your wishlist & tracked deals... 👁️👁️";
       if (statusIndicator) statusIndicator.textContent = "READY";
       break;
@@ -497,37 +498,37 @@ function updatePhysics(time) {
       // Kinematic calibration for front paw reach covering visor eyes
       if (boneKey === 'leftShoulder') {
         if (target.x === 1.95 || target.x === 2.2) {
-          // Axis flip: pitch forward along +Z/-X vector toward camera before raising upward
-          tx = -1.95; ty = 0.45; tz = 0.25;
+          // Elevated forward pitch to raise paws directly in front of the curved black visor
+          tx = -2.62; ty = 0.22; tz = 0.32;
         }
       } else if (boneKey === 'rightShoulder') {
         if (target.x === 1.95 || target.x === 2.2) {
-          // Axis flip: pitch forward along +Z/-X vector toward camera before raising upward
-          tx = -1.95; ty = -0.45; tz = -0.25;
+          // Elevated forward pitch to raise paws directly in front of the curved black visor
+          tx = -2.62; ty = -0.22; tz = -0.32;
         } else if (target.x === 0.65) {
           tx = -1.20; ty = -0.48; tz = 0.32;
         }
       } else if (boneKey === 'leftForeleg') {
         if (target.x === -1.85 || target.x === -1.9) {
-          // Bend sharply forward toward the visor lenses
-          tx = -1.25; ty = 0; tz = 0.15;
+          // Elevated forearm bend raising hands directly over eye visor
+          tx = 0.75; ty = 0.15; tz = 0.24;
         }
       } else if (boneKey === 'rightForeleg') {
         if (target.x === -1.85 || target.x === -1.9) {
-          // Bend sharply forward toward the visor lenses
-          tx = -1.25; ty = 0; tz = -0.15;
+          // Elevated forearm bend raising hands directly over eye visor
+          tx = 0.75; ty = -0.15; tz = -0.24;
         } else if (target.x === -0.4) {
           tx = -0.12; ty = 0.16; tz = 0;
         }
       } else if (boneKey === 'leftPaw') {
         if (target.z === 0.75 || target.x === 0.45 || target.x === 0.7) {
-          // Angle inward across front of visor
-          tx = 0.35; ty = -0.20; tz = 0.75;
+          // Angle inward across front of visor to fully shield eyes
+          tx = 0.38; ty = -0.10; tz = 0.68;
         }
       } else if (boneKey === 'rightPaw') {
         if (target.z === -0.75 || target.x === 0.45 || target.x === 0.7) {
-          // Angle inward across front of visor
-          tx = 0.35; ty = 0.20; tz = -0.75;
+          // Angle inward across front of visor to fully shield eyes
+          tx = 0.38; ty = 0.10; tz = -0.68;
         } else if (target.x === 0.3) {
           tx = 0.35; ty = 0.12; tz = -0.22;
         }
@@ -760,19 +761,6 @@ function buildFloatingChibiMechaCat() {
   groundShadow.rotation.x = -Math.PI / 2;
   groundShadow.position.y = 0.005;
   holoEmitterGroup.add(groundShadow);
-
-  // Upward cylindrical/conical holographic light beam
-  const holoBeamGeo = new THREE.CylinderGeometry(0.50, 0.82, 1.25, 32, 1, true);
-  const holoBeamMat = new THREE.MeshBasicMaterial({
-    color: 0x00F0FF,
-    transparent: true,
-    opacity: 0.09,
-    side: THREE.DoubleSide,
-    blending: THREE.AdditiveBlending
-  });
-  const holoBeam = new THREE.Mesh(holoBeamGeo, holoBeamMat);
-  holoBeam.position.set(0, 0.625, 0);
-  holoEmitterGroup.add(holoBeam);
 
   // Floating Ambient Sparkles Particles around the chassis
   const sparkleCount = 28;
@@ -1228,9 +1216,9 @@ function buildFloatingChibiMechaCat() {
     pawNode.position.set(0, -0.32, 0.02);
     forelegNode.add(pawNode);
 
-    // Palm Core (Chibi rounded mecha paw)
+    // Palm Core (Chibi rounded mecha paw scaled to comfortably cover visor eyes)
     const palmGeo = new THREE.SphereGeometry(0.096, 16, 14);
-    palmGeo.scale(1.35, 0.80, 1.55);
+    palmGeo.scale(1.48, 0.88, 1.65);
     palmGeo.translate(0, -0.02, 0.03);
     const palmMesh = new THREE.Mesh(palmGeo, ceramicArmorMat);
     pawNode.add(palmMesh);

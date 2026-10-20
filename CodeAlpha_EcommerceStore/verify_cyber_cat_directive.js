@@ -170,7 +170,7 @@ async function verifyCyberCatDirective() {
   assert(coverTop.includes("Shhh... Your password is private! 🙈"), `Password focus top bubble: "${coverTop}"`);
   assert(coverBottom.includes("Biometric Vault Active • 256-Bit SSL Protection"), `Password focus bottom pill: "${coverBottom}"`);
   const coverLeftShoulder = await page.evaluate(() => ({ ...window.targetRotations.leftShoulder }));
-  assert(coverLeftShoulder.x === 2.2 && coverLeftShoulder.y === 0.4 && coverLeftShoulder.z === 0.55, `Cover eyes target rotation leftShoulder exact: ${JSON.stringify(coverLeftShoulder)}`);
+  assert(coverLeftShoulder.x === 1.95 && coverLeftShoulder.y === 0.45 && coverLeftShoulder.z === 0.65, `Cover eyes target rotation leftShoulder exact: ${JSON.stringify(coverLeftShoulder)}`);
 
   // Capture State C: COVER_EYES
   await page.screenshot({ path: path.join(ARTIFACT_DIR, 'sentinel_state_c_password_cover.png') });

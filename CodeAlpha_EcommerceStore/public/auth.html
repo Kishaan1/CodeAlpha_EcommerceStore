@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Color+Emoji&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
 <script>
   (function () {
@@ -32,7 +32,7 @@
     theme: {
       extend: {
         fontFamily: {
-          sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+          sans: ['"Plus Jakarta Sans"', 'Inter', '"Noto Color Emoji"', 'system-ui', 'sans-serif'],
           serif: ['"Playfair Display"', 'Georgia', 'serif'],
           mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
         },
@@ -99,17 +99,15 @@
           <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
           <span>VYBE SECURITY CORE • Sentinel v2.4</span>
         </div>
-        <div class="flex items-center gap-2">
-          <span class="px-2.5 py-1 text-[11px] font-semibold text-blue-600 dark:text-cyan-400 bg-blue-50 dark:bg-cyan-950/40 border border-blue-200/60 dark:border-cyan-800/60 rounded-md tracking-wide">ONLINE</span>
-          <span class="text-[10px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 hidden sm:inline">
-            <span id="mascotStatusText" class="text-slate-800 dark:text-white font-bold">READY</span>
-          </span>
+        <div class="flex items-center">
+          <span class="px-2.5 py-1 text-[11px] font-semibold text-blue-600 dark:text-cyan-400 bg-blue-50 dark:bg-cyan-950/40 border border-blue-200/60 dark:border-cyan-800/60 rounded-md tracking-wide shadow-sm">ONLINE</span>
+          <span id="mascotStatusText" class="hidden">READY</span>
         </div>
       </div>
 
       <!-- Upper Speech Bubble (Pinned near cat's ear) -->
-      <div id="mascot-top-bubble" class="absolute top-20 left-8 z-30 max-w-[230px] p-3 rounded-2xl bg-white/95 dark:bg-slate-800/95 backdrop-blur-md shadow-xl shadow-slate-200/70 dark:shadow-slate-950/50 border border-slate-100 dark:border-slate-700 text-xs font-medium text-slate-800 dark:text-slate-200 transition-all duration-300">
-        <span id="mascotSpeechText">Hi! I'm Vybe Bot 🐾 Ready to discover better prices?</span>
+      <div id="mascot-top-bubble" class="absolute top-20 left-8 z-30 max-w-max px-4 py-2.5 rounded-2xl bg-white/95 dark:bg-slate-800/95 backdrop-blur-md shadow-xl shadow-slate-200/70 dark:shadow-slate-950/50 border border-slate-100 dark:border-slate-700 text-xs font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap transition-all duration-300 flex items-center gap-1.5" style="font-family: 'Plus Jakarta Sans', 'Noto Color Emoji', system-ui, sans-serif;">
+        <span id="mascotSpeechText">Hi! I&#39;m Vybe Bot &#x1F43E; Ready to discover better prices?</span>
         <div class="absolute -bottom-1.5 right-6 w-3 h-3 bg-white/95 dark:bg-slate-800/95 border-b border-r border-slate-100 dark:border-slate-700 rotate-45 pointer-events-none"></div>
       </div>
 
